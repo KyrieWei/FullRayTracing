@@ -20,14 +20,14 @@ public:
 		return Vector3D(x - vec.x, y - vec.y, z - vec.z);
 	}
 
-	Vector3D operator* (const float fac) const
+	Vector3D operator*(const float fac) const
 	{
 		return Vector3D(x * fac, y * fac, z * fac);
 	}
 
-	float operator*(const Vector3D& vec) const
+	Vector3D operator*(const Vector3D& vec) const
 	{
-		return x * vec.x + y * vec.y + z * vec.z;
+		return Vector3D(x * vec.x, y * vec.y, z * vec.z);
 	}
 
 	Vector3D operator/(const float fac) const
@@ -39,6 +39,11 @@ public:
 		}
 
 		return *this * (1 / fac);
+	}
+	
+	Vector3D operator-() const
+	{
+		return Vector3D(-x, -y, -z);
 	}
 
 	Vector3D& operator+=(const Vector3D& vec)

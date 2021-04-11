@@ -25,7 +25,7 @@ public:
 		float viewport_width = aspect_ratio * viewport_height;  //unit distance without multiplying focus_dist
 
 		//camera space
-		w = normalize(lookat - lookfrom); // +Z axis
+		w = normalize(lookfrom - lookat); // +Z axis
 		u = normalize(cross(vup, w));     // +X axis
 		v = cross(w, u);				  // +Y axis
 
@@ -33,7 +33,7 @@ public:
 		horizontal = focus_dist * viewport_width * u;
 		vertical = focus_dist * viewport_height * v;
 		lower_left = pos - (horizontal / 2 + vertical / 2 + focus_dist * w);
-
+		print(lower_left);
 	}
 
 	Ray get_ray(float s, float t) const
