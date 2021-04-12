@@ -33,7 +33,6 @@ public:
 		horizontal = focus_dist * viewport_width * u;
 		vertical = focus_dist * viewport_height * v;
 		lower_left = pos - (horizontal / 2 + vertical / 2 + focus_dist * w);
-		print(lower_left);
 	}
 
 	Ray get_ray(float s, float t) const

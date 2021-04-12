@@ -1,6 +1,8 @@
 #pragma once
 #include "Object.h"
 
+struct hit_record;
+
 class Material
 {
 public:

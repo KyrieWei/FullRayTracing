@@ -26,7 +26,9 @@ void print(const Vector4D& vec);
 inline float random_float();
 inline float random_float(float min, float max);
 
-Vector3D random_unit_vector();
+inline float clamp(float a, float min, float max);
+
+//Vector3D random_unit_vector();
 Vector3D random_in_unit_sphere();
 
 

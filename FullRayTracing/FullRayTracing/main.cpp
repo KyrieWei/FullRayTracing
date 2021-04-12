@@ -15,23 +15,26 @@ void initializeScene(Scene& scene)
 	shared_ptr<Lambertian> material_ground = make_shared<Lambertian>(Vector3D(0.8, 0.8, 0.0));
 
 
-	Sphere sphere(Vector3D(0, 0, -2), 0.5, material_center);
+	Sphere first_sphere(Vector3D(0.6, 0, -2), 0.5, material_center);
+	Sphere second_sphere(Vector3D(-0.6, 0, -2), 0.5, material_center);
 	Sphere plane(Vector3D(0, -100.5, -1), 100, material_ground);
 
 
-	scene.add(make_shared<Sphere>(sphere));
+	scene.add(make_shared<Sphere>(first_sphere));
+	scene.add(make_shared<Sphere>(second_sphere));
 	scene.add(make_shared<Sphere>(plane));
 
 }
 
 int main()
 {
-	const char* filename = "../result/third_sphere.jpg";
+	const char* filename = "../result/fourth_sphere.jpg";
 
 	const int width = 1280;
 	const int height = 720;
 	const int channel = 4;
 	const int depth = 50;
+	const int samples_per_pixel = 50;
 
 	//--------------------------------------------------------------------
 	//camera setting
@@ -52,8 +55,8 @@ int main()
 
 
 	Rendering render;
-	render.initialize(width, height, channel, depth);
-	render.render(filename, camera, scene, depth);
+	render.initialize(width, height, channel, depth, samples_per_pixel);
+	render.render(filename, camera, scene);
 
 	return 0;
 }

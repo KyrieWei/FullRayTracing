@@ -49,7 +49,7 @@ float length_squared(const Vector4D& vec)
 
 inline float random_float()
 {
-	srand((unsigned)time(NULL));
+	//srand((unsigned)time(NULL));
 	return rand() / (RAND_MAX + 1.0);
 }
 
@@ -58,10 +58,17 @@ inline float random_float(float min, float max)
 	return min + (max - min) * random_float();
 }
 
-Vector3D random_unit_vector()
+float clamp(float a, float min, float max)
 {
-
+	if (a < min) return min;
+	if (a > max) return max;
+	return a;
 }
+
+//Vector3D random_unit_vector()
+//{
+//
+//}
 
 Vector3D random_in_unit_sphere()
 {

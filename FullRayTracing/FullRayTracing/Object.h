@@ -7,6 +7,8 @@
 
 using std::shared_ptr;
 
+class Material;
+
 struct hit_record
 {
 	Vector3D pos;
