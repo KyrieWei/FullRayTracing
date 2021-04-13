@@ -86,6 +86,12 @@ public:
 		}
 	}
 
+	bool near_zero() const
+	{
+		const auto s = 1e-8;
+		return (fabs(x) < s) && (fabs(y) < s) && (fabs(z) < s);
+	}
+
 	friend Vector3D operator*(float fac, const Vector3D& vec)
 	{
 		return vec * fac;

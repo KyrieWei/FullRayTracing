@@ -29,9 +29,15 @@ Vector3D normalize(const Vector3D& vec)
 	return vec / len;
 }
 
-extern Vector3D cross(const Vector3D& u, const Vector3D& v)
+Vector3D cross(const Vector3D& u, const Vector3D& v)
 {
 	return Vector3D(u.y * v.z - u.z * v.y, u.z * v.x - u.x * v.z, u.x * v.y - u.y * v.x);
+}
+
+Vector3D unit_vector(const Vector3D& vec)
+{
+	float len = length(vec);
+	return vec / len;
 }
 
 float length_squared(const Vector4D& vec)
@@ -58,17 +64,44 @@ inline float random_float(float min, float max)
 	return min + (max - min) * random_float();
 }
 
-float clamp(float a, float min, float max)
+float m_clamp(float a, float min, float max)
 {
 	if (a < min) return min;
 	if (a > max) return max;
 	return a;
 }
 
-//Vector3D random_unit_vector()
-//{
-//
-//}
+// v is the incident direction, n is the unit normal;
+// reflect direction = v + 2b 
+// b = dot(-v, n) * n;
+Vector3D reflect(const Vector3D& v, const Vector3D& n)
+{
+	return v - 2 * dot(v, n) * n;
+}
+
+Vector3D refract(const Vector3D& uv, const Vector3D& n, float etai_over_etat)
+{
+	auto cos_theta = fmin(dot(-uv, n), 1.0);
+	Vector3D r_out_perp = etai_over_etat * (uv + cos_theta * n);
+	Vector3D r_out_parallel = -sqrt(fabs(1.0 - length_squared(r_out_perp))) * n;
+	return r_out_perp + r_out_parallel;
+}
+
+float reflectance(float cosine, float ref_idx)
+{
+	auto r0 = (1 - ref_idx) / (1 + ref_idx);
+	r0 = r0 * r0;
+	return r0 + (1 - r0) * pow((1 - cosine), 5);
+}
+
+
+Vector3D random_unit_vector()
+{
+	float a = random_float(0, 2 * M_PI);
+	float b = random_float(-1, 1);
+	float c = sqrt(1 - b * b);
+	return Vector3D(c * cos(a), c * sin(a), b);
+}
 
 Vector3D random_in_unit_sphere()
 {
@@ -80,6 +113,17 @@ Vector3D random_in_unit_sphere()
 		return p;
 	}
 }
+
+Vector3D random_in_hemisphere(const Vector3D& normal)
+{
+	Vector3D in_unit_sphere = random_in_unit_sphere();
+	if (dot(in_unit_sphere, normal) > 0.0)
+		return in_unit_sphere;
+	else
+		return -in_unit_sphere;
+}
+
+
 
 void print(const Vector3D& vec)
 {

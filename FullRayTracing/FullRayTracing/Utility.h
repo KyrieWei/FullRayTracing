@@ -15,6 +15,7 @@ float dot(const Vector3D& u, const Vector3D& v);
 
 Vector3D normalize(const Vector3D& vec);
 Vector3D cross(const Vector3D& u, const Vector3D& v);
+Vector3D unit_vector(const Vector3D& vec);
 
 
 float length_squared(const Vector4D& vec);
@@ -26,9 +27,15 @@ void print(const Vector4D& vec);
 inline float random_float();
 inline float random_float(float min, float max);
 
-inline float clamp(float a, float min, float max);
+float m_clamp(float a, float min, float max);
 
-//Vector3D random_unit_vector();
+
+Vector3D reflect(const Vector3D& v, const Vector3D& n);
+Vector3D refract(const Vector3D& uv, const Vector3D& n, float etai_over_etat);
+float reflectance(float cosine, float ref_idx);
+
+Vector3D random_unit_vector();
 Vector3D random_in_unit_sphere();
+Vector3D random_in_hemisphere(const Vector3D& normal);
 
 
