@@ -18,6 +18,6 @@ bool Dielectric::scatter(const Ray& r, const hit_record& rec, Vector3D& attenuat
 		direction = refract(unit_direction, rec.normal, refraction_ratio);
 
 
-	scattered = Ray(rec.pos, direction);
+	scattered = Ray(rec.pos, direction, r.time);
 	return true;
 }

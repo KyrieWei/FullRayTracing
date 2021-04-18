@@ -3,6 +3,7 @@
 #include "Vector3D.h"
 #include "Utility.h"
 #include "Material.h"
+#include "AABB.h"
 #include <memory>
 
 using std::shared_ptr;
@@ -30,5 +31,6 @@ class Object
 {
 public:
 	virtual bool hit(const Ray& r, hit_record& rec, float t_min, float t_max) const = 0;
+	virtual bool bounding_box(float time0, float time1, AABB& output_box) const = 0;
 };
 

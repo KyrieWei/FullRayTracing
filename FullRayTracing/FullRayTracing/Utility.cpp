@@ -94,6 +94,16 @@ float reflectance(float cosine, float ref_idx)
 	return r0 + (1 - r0) * pow((1 - cosine), 5);
 }
 
+Vector3D random()
+{
+	return Vector3D(random_float(), random_float(), random_float());
+}
+
+Vector3D random(float min, float max)
+{
+	return Vector3D(random_float(min, max), random_float(min, max), random_float(min, max));
+}
+
 
 Vector3D random_unit_vector()
 {
@@ -122,6 +132,25 @@ Vector3D random_in_hemisphere(const Vector3D& normal)
 	else
 		return -in_unit_sphere;
 }
+
+Vector3D random_in_unit_disk()
+{
+	while (true)
+	{
+		Vector3D p(random_float(-1, 1), random_float(-1, 1), 0);
+		if (length_squared(p) >= 1) continue;
+		return p;
+	}
+}
+
+AABB surrounding_box(const AABB& box0, const AABB& box1)
+{
+	Vector3D small(fmin(box0.minimum.x, box1.minimum.x), fmin(box0.minimum.y, box1.minimum.y), fmin(box0.minimum.z, box1.minimum.z));
+	Vector3D big(fmax(box0.maximum.x, box1.maximum.x), fmax(box0.maximum.y, box1.maximum.y), fmax(box0.maximum.z, box1.maximum.z));
+
+	return AABB(small, big);
+}
+
 
 
 

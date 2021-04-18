@@ -26,6 +26,8 @@ public:
 	}
 
 	virtual bool hit(const Ray& r, hit_record& rec, float t_min, float t_max) const override;
+
+	virtual bool bounding_box(float time0, float time1, AABB& output_box) const override;
 };
 
 

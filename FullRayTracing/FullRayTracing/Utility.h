@@ -3,6 +3,7 @@
 
 #include "Vector3D.h"
 #include "Vector4D.h"
+#include "AABB.h"
 #include <math.h>
 #include <iostream>
 
@@ -34,8 +35,11 @@ Vector3D reflect(const Vector3D& v, const Vector3D& n);
 Vector3D refract(const Vector3D& uv, const Vector3D& n, float etai_over_etat);
 float reflectance(float cosine, float ref_idx);
 
+Vector3D random();
+Vector3D random(float min, float max);
 Vector3D random_unit_vector();
 Vector3D random_in_unit_sphere();
 Vector3D random_in_hemisphere(const Vector3D& normal);
+Vector3D random_in_unit_disk();
 
-
+AABB surrounding_box(const AABB& box0, const AABB& box1);
