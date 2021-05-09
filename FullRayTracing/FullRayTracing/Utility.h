@@ -42,4 +42,6 @@ Vector3D random_in_unit_sphere();
 Vector3D random_in_hemisphere(const Vector3D& normal);
 Vector3D random_in_unit_disk();
 
+int random_int(int min, int max);
+
 AABB surrounding_box(const AABB& box0, const AABB& box1);

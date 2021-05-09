@@ -86,6 +86,16 @@ public:
 		}
 	}
 
+	float operator[](const int index) const
+	{
+		if (index == 0)
+			return x;
+		else if (index == 1)
+			return y;
+		else
+			return z;
+	}
+
 	bool near_zero() const
 	{
 		const auto s = 1e-8;

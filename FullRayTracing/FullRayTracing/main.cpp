@@ -39,7 +39,9 @@ void RandomScene(Scene& scene)
 {
 	//set ground
 	shared_ptr<Lambertian> ground_material = make_shared<Lambertian>(Vector3D(0.5, 0.5, 0.5));
-	Sphere ground(Vector3D(0, -1000, 0), 1000, ground_material);
+	shared_ptr<check_texture> checker = make_shared<check_texture>(Vector3D(0.2, 0.3, 0.1), Vector3D(0.9, 0.9, 0.9));
+
+	Sphere ground(Vector3D(0, -1000, 0), 1000, make_shared<Lambertian>(checker));
 	scene.add(make_shared<Sphere>(ground));
 
 	for (int a = -11; a < 11; a++)
@@ -92,8 +94,8 @@ int main()
 {
 	const char* filename = "../result/ten.jpg";
 
-	const int width = 1280;
-	const int height = 1080;
+	const int width = 640;
+	const int height = 480;
 	const int channel = 4;
 	const int depth = 50;
 	const int samples_per_pixel = 50;

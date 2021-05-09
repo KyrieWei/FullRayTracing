@@ -151,6 +151,11 @@ AABB surrounding_box(const AABB& box0, const AABB& box1)
 	return AABB(small, big);
 }
 
+int random_int(int min, int max)
+{
+	return static_cast<int>(random_float(min, max + 1));
+}
+
 
 
 

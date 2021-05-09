@@ -15,6 +15,11 @@ struct hit_record
 	Vector3D pos;
 	Vector3D normal;
 	float t;
+
+	//uv coordinate
+	float u;
+	float v;
+
 	bool front_face;
 
 	shared_ptr<Material> mat_ptr;
