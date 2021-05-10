@@ -1,5 +1,6 @@
 #pragma once
 #include "Vector3D.h"
+#include "Perlin.h"
 
 class Texture
 {
@@ -42,6 +43,23 @@ public:
 			return odd->value(u, v, p);
 		else
 			return even->value(u, v, p);
+	}
+};
+
+class noise_texture : public Texture
+{
+public:
+
+	Perlin noise;
+	float scale;
+
+
+	noise_texture() {}
+	noise_texture(float sc) : scale(sc) {}
+
+	virtual Vector3D value(float u, float v, const Vector3D& p) const override
+	{
+		return Vector3D(1, 1, 1) * noise.turb(scale * p);
 	}
 };
 

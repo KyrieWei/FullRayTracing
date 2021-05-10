@@ -90,9 +90,25 @@ void RandomScene(Scene& scene)
 
 }
 
+void two_Spheres(Scene& scene)
+{
+	shared_ptr<check_texture> checker = make_shared<check_texture>(Vector3D(0.2, 0.3, 0.1), Vector3D(0.9, 0.9, 0.9));
+
+	scene.add(make_shared<Sphere>(Vector3D(0, -10, 0), 10, make_shared<Lambertian>(checker)));
+	scene.add(make_shared<Sphere>(Vector3D(0, 10, 0), 10, make_shared<Lambertian>(checker)));
+}
+
+void two_Perlin_Spheres(Scene& scene)
+{
+	shared_ptr<noise_texture> pertext = make_shared<noise_texture>(4);
+	
+	scene.add(make_shared<Sphere>(Vector3D(0, -1000, 0), 1000, make_shared<Lambertian>(pertext)));
+	scene.add(make_shared<Sphere>(Vector3D(0, 2, 0), 2, make_shared<Lambertian>(pertext)));
+}
+
 int main()
 {
-	const char* filename = "../result/ten.jpg";
+	const char* filename = "../result/thirteen.jpg";
 
 	const int width = 640;
 	const int height = 480;
@@ -110,13 +126,39 @@ int main()
 	float aspect_ratio = float(width) / height;
 	float aperture = 0.1;
 
-	Camera camera(camera_pos, camera_lookat, camera_up, vfov, aspect_ratio, aperture, focal_dist, 0.0, 1.0);
-
 	//--------------------------------------------------------------------
 	//scene setting
 	Scene scene;
-	RandomScene(scene);
 
+	switch (2)
+	{
+	case 1:
+		RandomScene(scene);
+		camera_pos = Vector3D(13, 2, 3);
+		camera_lookat = Vector3D(0, 0, 0);
+		vfov = 20.0;
+		aperture = 0.1;
+		break;
+
+	case 2:
+		two_Spheres(scene);
+		camera_pos = Vector3D(13, 2, 3);
+		camera_lookat = Vector3D(0, 0, 0);
+		vfov = 20.0;
+		break;
+
+	case 3:
+		two_Perlin_Spheres(scene);
+		camera_pos = Vector3D(13, 2, 3);
+		camera_lookat = Vector3D(0, 0, 0);
+		vfov = 20.0;
+		break;
+
+	default:
+		break;
+	}
+	
+	Camera camera(camera_pos, camera_lookat, camera_up, vfov, aspect_ratio, aperture, focal_dist, 0.0, 1.0);
 
 
 	Rendering render;

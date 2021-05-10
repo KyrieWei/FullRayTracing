@@ -132,6 +132,7 @@
     <ClInclude Include="Metal.h" />
     <ClInclude Include="MovingSphere.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Perlin.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="Rendering.h" />
     <ClInclude Include="resource.h" />
@@ -154,6 +155,7 @@
     <ClCompile Include="Metal.cpp" />
     <ClCompile Include="MovingSphere.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Perlin.cpp" />
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="Rendering.cpp" />
     <ClCompile Include="Scene.cpp" />
