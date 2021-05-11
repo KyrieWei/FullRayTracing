@@ -11,6 +11,8 @@ class Rendering
 
 	unsigned char* m_image;
 
+	
+
 public:
 	Rendering() {};
 	~Rendering()
@@ -20,11 +22,11 @@ public:
 
 	void initialize(int w, int h, int c = 4, int depth = 50, int _samples_per_pixel = 100);
 
-	void render(const char* filename, const Camera& camera, const Scene& scene);
+	void render(const char* filename, const Camera& camera, const Scene& scene, const Vector3D& background);
 
 	void drawPixel(int x, int y, const Vector3D& color);
 
-	Vector3D rayColor(const Ray& r, const Scene& scene, int depth);
+	Vector3D rayColor(const Ray& r, const Vector3D& background, const Scene& scene, int depth);
 
 };
 

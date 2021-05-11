@@ -75,6 +75,21 @@
     <ClInclude Include="Perlin.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Diffuse_light.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="XY_Rect.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="XZ_Rect.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="YZ_Rect.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ray.cpp">
@@ -132,6 +147,18 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Perlin.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Diffuse_light.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="XY_Rect.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="XZ_Rect.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="YZ_Rect.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

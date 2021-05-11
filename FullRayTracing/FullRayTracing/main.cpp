@@ -10,6 +10,10 @@
 #include "Lambertian.h"
 #include "Metal.h"
 #include "Dielectric.h"
+#include "Diffuse_light.h"
+#include "XY_Rect.h"
+#include "YZ_Rect.h"
+#include "XZ_Rect.h"
 
 void initializeScene(Scene& scene)
 {
@@ -106,15 +110,58 @@ void two_Perlin_Spheres(Scene& scene)
 	scene.add(make_shared<Sphere>(Vector3D(0, 2, 0), 2, make_shared<Lambertian>(pertext)));
 }
 
+void earth(Scene& scene)
+{
+	auto earth_texture = make_shared<image_texture>("textures/earthmap.jpg");
+	auto earth_surface = make_shared<Lambertian>(earth_texture);
+	auto globe = make_shared<Sphere>(Vector3D(0, 0, 0), 2, earth_surface);
+	scene.add(globe);
+}
+
+Scene simple_light()
+{
+	Scene objects;
+
+	auto pertext = make_shared<noise_texture>(4);
+	objects.add(make_shared<Sphere>(Vector3D(0, -1000, 0), 1000, make_shared<Lambertian>(pertext)));
+	objects.add(make_shared<Sphere>(Vector3D(0, 2, 0), 2, make_shared<Lambertian>(pertext)));
+
+	auto difflight = make_shared<Diffuse_light>(Vector3D(4, 4, 4));
+	objects.add(make_shared<XY_Rect>(3, 5, 1, 3, -2, difflight));
+
+	return objects;
+}
+
+Scene cornell_box()
+{
+	Scene objects;
+
+	auto red = make_shared<Lambertian>(Vector3D(0.65, 0.05, 0.05));
+	auto white = make_shared<Lambertian>(Vector3D(0.73, 0.73, 0.73));
+	auto green = make_shared<Lambertian>(Vector3D(0.12, 0.45, 0.15));
+	auto light = make_shared<Diffuse_light>(Vector3D(15, 15, 15));
+
+	objects.add(make_shared<YZ_Rect>(0, 555, 0, 555, 555, green));
+	objects.add(make_shared<YZ_Rect>(0, 555, 0, 555, 0, red));
+	objects.add(make_shared<XZ_Rect>(213, 343, 227, 332, 554, light));
+	objects.add(make_shared<XZ_Rect>(0, 555, 0, 555, 0, white));
+	objects.add(make_shared<XZ_Rect>(0, 555, 0, 555, 555, white));
+	objects.add(make_shared<XY_Rect>(0, 555, 0, 555, 555, white));
+
+	return objects;
+}
+
 int main()
 {
-	const char* filename = "../result/thirteen.jpg";
+	const char* filename = "../result/fifteen.jpg";
 
-	const int width = 640;
-	const int height = 480;
-	const int channel = 4;
-	const int depth = 50;
-	const int samples_per_pixel = 50;
+	int width = 1920;
+	int height = 1080;
+	int channel = 4;
+	int depth = 50;
+	int samples_per_pixel = 50;
+
+	Vector3D background(0, 0, 0);
 
 	//--------------------------------------------------------------------
 	//camera setting
@@ -130,10 +177,11 @@ int main()
 	//scene setting
 	Scene scene;
 
-	switch (2)
+	switch (5)
 	{
 	case 1:
 		RandomScene(scene);
+		background = Vector3D(0.7, 0.8, 1.0);
 		camera_pos = Vector3D(13, 2, 3);
 		camera_lookat = Vector3D(0, 0, 0);
 		vfov = 20.0;
@@ -142,6 +190,7 @@ int main()
 
 	case 2:
 		two_Spheres(scene);
+		background = Vector3D(0.7, 0.8, 1.0);
 		camera_pos = Vector3D(13, 2, 3);
 		camera_lookat = Vector3D(0, 0, 0);
 		vfov = 20.0;
@@ -149,11 +198,38 @@ int main()
 
 	case 3:
 		two_Perlin_Spheres(scene);
+		background = Vector3D(0.7, 0.8, 1.0);
 		camera_pos = Vector3D(13, 2, 3);
 		camera_lookat = Vector3D(0, 0, 0);
 		vfov = 20.0;
 		break;
 
+	case 4:
+		earth(scene);
+		background = Vector3D(0.7, 0.8, 1.0);
+		camera_pos = Vector3D(13, 2, 3);
+		camera_lookat = Vector3D(0, 0, 0);
+		vfov = 20.0;
+		break;
+
+	case 5:
+		scene = simple_light();
+		samples_per_pixel = 400;
+		background = Vector3D(0.0, 0.0, 0.0);
+		camera_pos = Vector3D(26, 3, 6);
+		camera_lookat = Vector3D(0, 2, 0);
+		vfov = 20.0;
+		break;
+	case 6:
+		scene = cornell_box();
+		width = 800;
+		height = 800;
+		aspect_ratio = width / height;
+		samples_per_pixel = 200;
+		background = Vector3D(0, 0, 0);
+		camera_pos = Vector3D(278, 278, -800);
+		camera_lookat = Vector3D(278, 278, 0);
+		vfov = 40.0;
 	default:
 		break;
 	}
@@ -163,7 +239,7 @@ int main()
 
 	Rendering render;
 	render.initialize(width, height, channel, depth, samples_per_pixel);
-	render.render(filename, camera, scene);
+	render.render(filename, camera, scene, background);
 
 	return 0;
 }

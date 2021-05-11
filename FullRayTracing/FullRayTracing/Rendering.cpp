@@ -19,7 +19,7 @@ void Rendering::initialize(int w, int h, int c, int depth, int _samples_per_pixe
 	m_image = new unsigned char[width * height * channel];
 }
 
-void Rendering::render(const char* filename, const Camera& camera, const Scene& scene)
+void Rendering::render(const char* filename, const Camera& camera, const Scene& scene, const Vector3D& background)
 {
 
 	for (int row = height - 1; row >= 0; row--)
@@ -34,7 +34,7 @@ void Rendering::render(const char* filename, const Camera& camera, const Scene& 
 				float t = (row + random_float()) / height;
 
 				Ray r = camera.get_ray(s, t);
-				color_pixel += rayColor(r, scene, maxDepth);
+				color_pixel += rayColor(r, background, scene, maxDepth);
 			}
 			
 			drawPixel(row, col, color_pixel);
@@ -63,25 +63,23 @@ void Rendering::drawPixel(int row, int col, const Vector3D& color)
 	m_image[index + 3] = static_cast<unsigned char>(255);
 }
 
-Vector3D Rendering::rayColor(const Ray& r, const Scene& scene, int depth)
+Vector3D Rendering::rayColor(const Ray& r, const Vector3D& background, const Scene& scene, int depth)
 {
 	hit_record rec;
 
 	if (depth <= 0)
 		return Vector3D(0, 0, 0);
 
-	if (scene.hit(r, rec, 0.001, INFINITY))
-	{
-		Ray scattered;
-		Vector3D attenuation;
-		if (rec.mat_ptr->scatter(r, rec, attenuation, scattered))
-			return attenuation * rayColor(scattered, scene, depth - 1);
+	if (!scene.hit(r, rec, 0.001, INFINITY))
+		return background;
 
-		return Vector3D(0, 0, 0);
-	}
+	Ray scattered;
+	Vector3D attenuation;
+	Vector3D emitted = rec.mat_ptr->emitted(rec.u, rec.v, rec.pos);
+	
+	if (!rec.mat_ptr->scatter(r, rec, attenuation, scattered))
+		return emitted;
 
-	Vector3D unit_direction = unit_vector(r.direction);
-	float t = 0.5 * (unit_direction.y + 1.0);
-	return (1.0 - t) * Vector3D(1.0, 1.0, 1.0) + t * Vector3D(0.5, 0.7, 1.0);
+	return emitted + attenuation * rayColor(scattered, background, scene, depth - 1);
 }
 
