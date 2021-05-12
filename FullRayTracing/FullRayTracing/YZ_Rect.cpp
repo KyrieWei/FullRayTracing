@@ -3,7 +3,7 @@
 bool YZ_Rect::hit(const Ray& r, hit_record& rec, float t_min, float t_max) const
 {
 	auto t = (k - r.origin.x) / r.direction.x;
-	if (t < t_min || t < t_max)
+	if (t < t_min || t > t_max)
 		return false;
 
 	auto y = r.origin.y + t * r.direction.y;

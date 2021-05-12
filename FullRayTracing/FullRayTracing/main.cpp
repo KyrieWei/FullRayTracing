@@ -153,7 +153,7 @@ Scene cornell_box()
 
 int main()
 {
-	const char* filename = "../result/fifteen.jpg";
+	const char* filename = "../result/sixteen.jpg";
 
 	int width = 1920;
 	int height = 1080;
@@ -177,7 +177,7 @@ int main()
 	//scene setting
 	Scene scene;
 
-	switch (5)
+	switch (6)
 	{
 	case 1:
 		RandomScene(scene);
