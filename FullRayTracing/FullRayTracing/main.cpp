@@ -14,6 +14,7 @@
 #include "XY_Rect.h"
 #include "YZ_Rect.h"
 #include "XZ_Rect.h"
+#include "Box.h"
 
 void initializeScene(Scene& scene)
 {
@@ -147,6 +148,9 @@ Scene cornell_box()
 	objects.add(make_shared<XZ_Rect>(0, 555, 0, 555, 0, white));
 	objects.add(make_shared<XZ_Rect>(0, 555, 0, 555, 555, white));
 	objects.add(make_shared<XY_Rect>(0, 555, 0, 555, 555, white));
+
+	objects.add(make_shared<Box>(Vector3D(130, 0, 65), Vector3D(295, 165, 230), white));
+	objects.add(make_shared<Box>(Vector3D(265, 0, 295), Vector3D(430, 330, 460), white));
 
 	return objects;
 }
