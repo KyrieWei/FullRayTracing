@@ -86,7 +86,7 @@ public:
 		}
 	}
 
-	float operator[](const int index) const
+	float& operator[](const int index)
 	{
 		if (index == 0)
 			return x;

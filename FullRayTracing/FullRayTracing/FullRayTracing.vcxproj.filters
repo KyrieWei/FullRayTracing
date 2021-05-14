@@ -96,6 +96,15 @@
     <ClInclude Include="Translate.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Rotate_y.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Constant_medium.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Isotropic.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ray.cpp">
@@ -171,6 +180,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Translate.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Rotate_y.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Constant_medium.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Isotropic.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

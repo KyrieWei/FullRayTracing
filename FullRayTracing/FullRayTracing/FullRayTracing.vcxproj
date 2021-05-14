@@ -127,8 +127,10 @@
     <ClInclude Include="Box.h" />
     <ClInclude Include="BVHNode.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Constant_medium.h" />
     <ClInclude Include="Dielectric.h" />
     <ClInclude Include="Diffuse_light.h" />
+    <ClInclude Include="Isotropic.h" />
     <ClInclude Include="Lambertian.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Metal.h" />
@@ -138,6 +140,7 @@
     <ClInclude Include="Ray.h" />
     <ClInclude Include="Rendering.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Rotate_y.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="stb_image.h" />
@@ -156,8 +159,10 @@
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="BVHNode.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Constant_medium.cpp" />
     <ClCompile Include="Dielectric.cpp" />
     <ClCompile Include="Diffuse_light.cpp" />
+    <ClCompile Include="Isotropic.cpp" />
     <ClCompile Include="Lambertian.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
@@ -167,6 +172,7 @@
     <ClCompile Include="Perlin.cpp" />
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="Rendering.cpp" />
+    <ClCompile Include="Rotate_y.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Texture.cpp" />
