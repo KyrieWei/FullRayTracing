@@ -1,6 +1,9 @@
 #pragma once
 
 #include <iostream>
+#include <iomanip>
+#include <math.h>
+#include <stdlib.h>
 
 #include "Rendering.h"
 #include "Camera.h"
@@ -245,7 +248,7 @@ Scene final_scene()
 	boundary = make_shared<Sphere>(Vector3D(0, 0, 0), 5000, make_shared<Dielectric>(1.5));
 	objects.add(make_shared<Constant_medium>(boundary, .0001, Vector3D(1, 1, 1)));
 
-	auto emat = make_shared<Lambertian>(make_shared<image_texture>("earthmap.jpg"));
+	auto emat = make_shared<Lambertian>(make_shared<image_texture>("textures/earthmap.jpg"));
 	objects.add(make_shared<Sphere>(Vector3D(400, 200, 400), 100, emat));
 	auto pertext = make_shared<noise_texture>(0.1);
 	objects.add(make_shared<Sphere>(Vector3D(220, 280, 300), 80, make_shared<Lambertian>(pertext)));
@@ -264,9 +267,30 @@ Scene final_scene()
 
 }
 
+
+inline float pdf(const Vector3D& x)
+{
+	return 1 / (4 * M_PI);
+}
+
 int main()
 {
-	const char* filename = "../result/seventeen.jpg";
+	int N = 1000000;
+	auto sum = 0.0;
+
+	for (int i = 0; i < N; i++)
+	{
+		Vector3D d = random_unit_vector();
+		auto cosine_squared = d.z * d.z;
+		sum += cosine_squared / pdf(d);
+	}
+	std::cout << std::fixed << std::setprecision(12);
+	std::cout << "I = " << sum / N << "\n";
+}
+
+int test()
+{
+	const char* filename = "../result/eighteen.jpg";
 
 	int width = 1920;
 	int height = 1080;
@@ -290,7 +314,7 @@ int main()
 	//scene setting
 	Scene scene;
 
-	switch (6)
+	switch (8)
 	{
 	case 1:
 		RandomScene(scene);
@@ -367,6 +391,8 @@ int main()
 		camera_pos = Vector3D(478, 278, -600);
 		camera_lookat = Vector3D(278, 278, 0);
 		vfov = 40.0;
+		break;
+
 	default:
 		break;
 	}

@@ -35,11 +35,11 @@ bool Constant_medium::hit(const Ray& r, hit_record& rec, float t_min, float t_ma
 	rec.t = rec1.t + hit_distance / ray_length;
 	rec.pos = r.pointAt(rec.t);
 
-	if (debugging) {
-		std::cerr << "hit_distance = " << hit_distance << '\n'
-			<< "rec.t = " << rec.t << '\n'
-			<< "rec.p = " << rec.p << '\n';
-	}
+	//if (debugging) {
+	//	std::cerr << "hit_distance = " << hit_distance << '\n'
+	//		<< "rec.t = " << rec.t << '\n'
+	//		<< "rec.p = " << rec.pos << '\n';
+	//}
 
 	rec.normal = Vector3D(1, 0, 0);
 	rec.front_face = true;
