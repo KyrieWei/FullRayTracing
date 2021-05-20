@@ -1,14 +1,21 @@
 #include "Lambertian.h"
+#include "ONB.h"
 
-bool Lambertian::scatter(const Ray& r, const hit_record& rec, Vector3D& attenuation, Ray& scattered) const
+bool Lambertian::scatter(const Ray& r, const hit_record& rec, Vector3D& alb, Ray& scattered, float& pdf) const
 {
-	Vector3D scatter_direction = rec.normal + random_unit_vector();
+	ONB uvw;
+	uvw.build_from_w(rec.normal);
+	auto direction = uvw.local(random_cosine_direction());
 
-	//if rec.normal and random_unit_vector is the opposite direction
-	if (scatter_direction.near_zero())
-		scatter_direction = rec.normal;
+	scattered = Ray(rec.pos, unit_vector(direction), r.time);
+	alb = albedo->value(rec.u, rec.v, rec.pos);
+	pdf = dot(uvw.w(), scattered.direction) / M_PI;
 
-	scattered = Ray(rec.pos, scatter_direction, r.time);
-	attenuation = albedo->value(rec.u, rec.v, rec.pos);
 	return true;
+}
+
+float Lambertian::scattering_pdf(const Ray& r, const hit_record& rec, const Ray& scattered) const
+{
+	auto cosine = dot(rec.normal, unit_vector(scattered.direction));
+	return cosine < 0 ? 0 : cosine / M_PI;
 }

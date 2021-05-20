@@ -75,11 +75,29 @@ Vector3D Rendering::rayColor(const Ray& r, const Vector3D& background, const Sce
 
 	Ray scattered;
 	Vector3D attenuation;
-	Vector3D emitted = rec.mat_ptr->emitted(rec.u, rec.v, rec.pos);
+	Vector3D emitted = rec.mat_ptr->emitted(r, rec, rec.u, rec.v, rec.pos);
+	float pdf;
+	Vector3D albedo;
 	
-	if (!rec.mat_ptr->scatter(r, rec, attenuation, scattered))
+	if (!rec.mat_ptr->scatter(r, rec, albedo, scattered, pdf))
 		return emitted;
 
-	return emitted + attenuation * rayColor(scattered, background, scene, depth - 1);
+	auto on_light = Vector3D(random_float(213, 343), 554, random_float(227, 332));
+	auto to_light = on_light - rec.pos;
+	auto distance_squared = length_squared(to_light);
+	to_light = unit_vector(to_light);
+
+	if (dot(to_light, rec.normal) < 0)
+		return emitted;
+
+	float light_area = (343 - 213) * (332 - 227);
+	auto light_cosine = fabs(to_light.y);
+	if (light_cosine < 0.000001)
+		return emitted;
+
+	pdf = distance_squared / (light_cosine * light_area);
+	scattered = Ray(rec.pos, to_light, r.time);
+
+	return emitted + albedo * rec.mat_ptr->scattering_pdf(r, rec, scattered) * rayColor(scattered, background, scene, depth - 1) / pdf;
 }
 

@@ -41,6 +41,7 @@ Vector3D random_unit_vector();
 Vector3D random_in_unit_sphere();
 Vector3D random_in_hemisphere(const Vector3D& normal);
 Vector3D random_in_unit_disk();
+Vector3D random_cosine_direction();
 
 int random_int(int min, int max);
 

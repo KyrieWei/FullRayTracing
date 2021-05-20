@@ -105,6 +105,12 @@
     <ClInclude Include="Isotropic.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ONB.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Flip_face.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ray.cpp">
@@ -189,6 +195,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Isotropic.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ONB.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Flip_face.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

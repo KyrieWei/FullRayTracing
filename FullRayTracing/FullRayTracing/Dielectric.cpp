@@ -1,6 +1,6 @@
 #include "Dielectric.h"
 
-bool Dielectric::scatter(const Ray& r, const hit_record& rec, Vector3D& attenuation, Ray& scattered) const
+bool Dielectric::scatter(const Ray& r, const hit_record& rec, Vector3D& attenuation, Ray& scattered, float& pdf) const
 {
 	attenuation = Vector3D(1.0, 1.0, 1.0);
 	float refraction_ratio = rec.front_face ? (1.0 / ir) : ir;

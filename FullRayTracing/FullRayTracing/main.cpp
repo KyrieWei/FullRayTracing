@@ -22,6 +22,7 @@
 #include "Translate.h"
 #include "Constant_medium.h"
 #include "BVHNode.h"
+#include "Flip_face.h"
 
 void initializeScene(Scene& scene)
 {
@@ -151,13 +152,11 @@ Scene cornell_box()
 
 	objects.add(make_shared<YZ_Rect>(0, 555, 0, 555, 555, green));
 	objects.add(make_shared<YZ_Rect>(0, 555, 0, 555, 0, red));
-	objects.add(make_shared<XZ_Rect>(213, 343, 227, 332, 554, light));
+	objects.add(make_shared<Flip_face>(make_shared<XZ_Rect>(213, 343, 227, 332, 554, light)));
 	objects.add(make_shared<XZ_Rect>(0, 555, 0, 555, 0, white));
 	objects.add(make_shared<XZ_Rect>(0, 555, 0, 555, 555, white));
 	objects.add(make_shared<XY_Rect>(0, 555, 0, 555, 555, white));
 
-	objects.add(make_shared<Box>(Vector3D(130, 0, 65), Vector3D(295, 165, 230), white));
-	objects.add(make_shared<Box>(Vector3D(265, 0, 295), Vector3D(430, 330, 460), white));
 
 	shared_ptr<Object> box1 = make_shared<Box>(Vector3D(0, 0, 0), Vector3D(165, 330, 165), white);
 	box1 = make_shared<Rotate_y>(box1, 15);
@@ -273,7 +272,7 @@ inline float pdf(const Vector3D& x)
 	return 1 / (4 * M_PI);
 }
 
-int main()
+int test()
 {
 	int N = 1000000;
 	auto sum = 0.0;
@@ -286,11 +285,13 @@ int main()
 	}
 	std::cout << std::fixed << std::setprecision(12);
 	std::cout << "I = " << sum / N << "\n";
+
+	return 0;
 }
 
-int test()
+int main()
 {
-	const char* filename = "../result/eighteen.jpg";
+	const char* filename = "../result/twenty-two.jpg";
 
 	int width = 1920;
 	int height = 1080;
@@ -314,7 +315,7 @@ int test()
 	//scene setting
 	Scene scene;
 
-	switch (8)
+	switch (6)
 	{
 	case 1:
 		RandomScene(scene);
@@ -359,10 +360,10 @@ int test()
 		break;
 	case 6:
 		scene = cornell_box();
-		width = 800;
-		height = 800;
+		width =	500;
+		height = 500;
 		aspect_ratio = width / height;
-		samples_per_pixel = 200;
+		samples_per_pixel = 10;
 		background = Vector3D(0, 0, 0);
 		camera_pos = Vector3D(278, 278, -800);
 		camera_lookat = Vector3D(278, 278, 0);

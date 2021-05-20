@@ -42,7 +42,7 @@ bool Rotate_y::hit(const Ray& r, hit_record& rec, float t_min, float t_max) cons
 	origin[2] = sin_theta * r.origin.x + cos_theta * r.origin.z;
 
 	direction[0] = cos_theta * r.direction.x - sin_theta * r.direction.z;
-	direction[2] = sin_theta * r.direction.x - cos_theta * r.direction.z;
+	direction[2] = sin_theta * r.direction.x + cos_theta * r.direction.z;
 
 	Ray rotated_r(origin, direction, r.time);
 
@@ -53,7 +53,10 @@ bool Rotate_y::hit(const Ray& r, hit_record& rec, float t_min, float t_max) cons
 	auto normal = rec.normal;
 
 	p[0] = cos_theta * rec.pos[0] + sin_theta * rec.pos[2];
-	p[2] = -sin_theta * rec.normal[0] + cos_theta * rec.normal[2];
+	p[2] = -sin_theta * rec.pos[0] + cos_theta * rec.pos[2];
+
+	normal[0] = cos_theta * rec.normal[0] + sin_theta * rec.normal[2];
+	normal[2] = -sin_theta * rec.normal[0] + cos_theta * rec.normal[2];
 
 	rec.pos = p;
 	rec.set_face_normal(rotated_r, normal);

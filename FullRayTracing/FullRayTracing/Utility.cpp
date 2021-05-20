@@ -143,6 +143,21 @@ Vector3D random_in_unit_disk()
 	}
 }
 
+Vector3D random_cosine_direction()
+{
+	auto r1 = random_float();
+	auto r2 = random_float();
+	auto z = sqrt(1 - r2);
+
+	auto phi = 2 * M_PI * r1;
+
+	auto x = cos(phi) * sqrt(r2);
+	auto y = sin(phi) * sqrt(r2);
+
+	return Vector3D(x, y, z);
+
+}
+
 AABB surrounding_box(const AABB& box0, const AABB& box1)
 {
 	Vector3D small(fmin(box0.minimum.x, box1.minimum.x), fmin(box0.minimum.y, box1.minimum.y), fmin(box0.minimum.z, box1.minimum.z));

@@ -9,6 +9,6 @@ public:
 
 	Metal(const Vector3D& a, float f) : albedo(a), fuzz(f < 1 ? f : 1){}
 
-	virtual bool scatter(const Ray& r, const hit_record& rec, Vector3D& attenuation, Ray& scattered) const override;
+	virtual bool scatter(const Ray& r, const hit_record& rec, Vector3D& attenuation, Ray& scattered, float& pdf) const override;
 };
 
