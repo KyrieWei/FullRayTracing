@@ -111,6 +111,18 @@
     <ClInclude Include="Flip_face.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="PDF.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Cosine_pdf.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Object_PDF.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Mixture_PDF.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ray.cpp">
@@ -201,6 +213,18 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Flip_face.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PDF.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Cosine_pdf.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Object_PDF.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Mixture_PDF.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

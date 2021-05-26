@@ -291,7 +291,7 @@ int test()
 
 int main()
 {
-	const char* filename = "../result/twenty-two.jpg";
+	const char* filename = "../result/twenty-five.jpg";
 
 	int width = 1920;
 	int height = 1080;
@@ -314,6 +314,7 @@ int main()
 	//--------------------------------------------------------------------
 	//scene setting
 	Scene scene;
+	shared_ptr<Object> lights;
 
 	switch (6)
 	{
@@ -360,10 +361,11 @@ int main()
 		break;
 	case 6:
 		scene = cornell_box();
+		lights = make_shared<XZ_Rect>(213, 343, 227, 332, 554, shared_ptr<Material>());
 		width =	500;
 		height = 500;
 		aspect_ratio = width / height;
-		samples_per_pixel = 10;
+		samples_per_pixel = 1000;
 		background = Vector3D(0, 0, 0);
 		camera_pos = Vector3D(278, 278, -800);
 		camera_lookat = Vector3D(278, 278, 0);
@@ -403,7 +405,7 @@ int main()
 
 	Rendering render;
 	render.initialize(width, height, channel, depth, samples_per_pixel);
-	render.render(filename, camera, scene, background);
+	render.render(filename, camera, scene, lights, background);
 
 	return 0;
 }

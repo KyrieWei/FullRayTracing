@@ -15,6 +15,25 @@ public:
 		return true;
 	}
 
+	virtual float pdf_value(const Vector3D& origin, const Vector3D& v) const override
+	{
+		hit_record rec;
+		if (!this->hit(Ray(origin, v), rec, 0.001, INFINITY))
+			return 0;
+
+		auto area = (x1 - x0) * (z1 - z0);
+		auto distance_squared = rec.t * rec.t * length_squared(v);
+		auto cosine = fabs(dot(v, rec.normal) / length(v));
+
+		return distance_squared / (cosine * area);
+	}
+
+	virtual Vector3D random(const Vector3D& origin) const override
+	{
+		auto random_point = Vector3D(random_float(x0, x1), k, random_float(z0, z1));
+		return random_point - origin;
+	}
+
 public:
 	shared_ptr<Material> mp;
 	float x0, x1, z0, z1, k;

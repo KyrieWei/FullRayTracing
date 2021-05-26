@@ -2,7 +2,9 @@
 #include "stb_image_write.h"
 
 #include "Rendering.h"
-
+#include "Cosine_pdf.h"
+#include "Object_PDF.h"
+#include "Mixture_PDF.h"
 
 
 void Rendering::initialize(int w, int h, int c, int depth, int _samples_per_pixel)
@@ -19,7 +21,7 @@ void Rendering::initialize(int w, int h, int c, int depth, int _samples_per_pixe
 	m_image = new unsigned char[width * height * channel];
 }
 
-void Rendering::render(const char* filename, const Camera& camera, const Scene& scene, const Vector3D& background)
+void Rendering::render(const char* filename, const Camera& camera, const Scene& scene, shared_ptr<Object>& lights, const Vector3D& background)
 {
 
 	for (int row = height - 1; row >= 0; row--)
@@ -34,7 +36,7 @@ void Rendering::render(const char* filename, const Camera& camera, const Scene& 
 				float t = (row + random_float()) / height;
 
 				Ray r = camera.get_ray(s, t);
-				color_pixel += rayColor(r, background, scene, maxDepth);
+				color_pixel += rayColor(r, background, scene, lights, maxDepth);
 			}
 			
 			drawPixel(row, col, color_pixel);
@@ -63,7 +65,7 @@ void Rendering::drawPixel(int row, int col, const Vector3D& color)
 	m_image[index + 3] = static_cast<unsigned char>(255);
 }
 
-Vector3D Rendering::rayColor(const Ray& r, const Vector3D& background, const Scene& scene, int depth)
+Vector3D Rendering::rayColor(const Ray& r, const Vector3D& background, const Scene& scene, shared_ptr<Object>& lights, int depth)
 {
 	hit_record rec;
 
@@ -82,22 +84,14 @@ Vector3D Rendering::rayColor(const Ray& r, const Vector3D& background, const Sce
 	if (!rec.mat_ptr->scatter(r, rec, albedo, scattered, pdf))
 		return emitted;
 
-	auto on_light = Vector3D(random_float(213, 343), 554, random_float(227, 332));
-	auto to_light = on_light - rec.pos;
-	auto distance_squared = length_squared(to_light);
-	to_light = unit_vector(to_light);
+	auto p0 = make_shared<Object_PDF>(lights, rec.pos);
+	auto p1 = make_shared<Cosine_pdf>(rec.normal);
+	Mixture_PDF mixed_pdf(p0, p1);
 
-	if (dot(to_light, rec.normal) < 0)
-		return emitted;
+	scattered = Ray(rec.pos, mixed_pdf.generate(), r.time);
+	pdf = mixed_pdf.value(scattered.direction);
+	
 
-	float light_area = (343 - 213) * (332 - 227);
-	auto light_cosine = fabs(to_light.y);
-	if (light_cosine < 0.000001)
-		return emitted;
-
-	pdf = distance_squared / (light_cosine * light_area);
-	scattered = Ray(rec.pos, to_light, r.time);
-
-	return emitted + albedo * rec.mat_ptr->scattering_pdf(r, rec, scattered) * rayColor(scattered, background, scene, depth - 1) / pdf;
+	return emitted + albedo * rec.mat_ptr->scattering_pdf(r, rec, scattered) * rayColor(scattered, background, scene, lights, depth - 1) / pdf;
 }
 

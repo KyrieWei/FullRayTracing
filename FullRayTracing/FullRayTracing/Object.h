@@ -37,5 +37,14 @@ class Object
 public:
 	virtual bool hit(const Ray& r, hit_record& rec, float t_min, float t_max) const = 0;
 	virtual bool bounding_box(float time0, float time1, AABB& output_box) const = 0;
+	virtual float pdf_value(const Vector3D& o, const Vector3D& v) const
+	{
+		return 0.0;
+	}
+
+	virtual Vector3D random(const Vector3D& o) const
+	{
+		return Vector3D(1, 0, 0);
+	}
 };
 
