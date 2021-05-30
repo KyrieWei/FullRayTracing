@@ -291,7 +291,7 @@ int test()
 
 int main()
 {
-	const char* filename = "../result/twenty-five.jpg";
+	const char* filename = "../result/twenty-seven.jpg";
 
 	int width = 1920;
 	int height = 1080;
@@ -362,8 +362,8 @@ int main()
 	case 6:
 		scene = cornell_box();
 		lights = make_shared<XZ_Rect>(213, 343, 227, 332, 554, shared_ptr<Material>());
-		width =	500;
-		height = 500;
+		width =	1200;
+		height = 1200;
 		aspect_ratio = width / height;
 		samples_per_pixel = 1000;
 		background = Vector3D(0, 0, 0);
