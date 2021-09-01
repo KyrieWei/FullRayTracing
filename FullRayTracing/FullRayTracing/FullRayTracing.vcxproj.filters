@@ -13,219 +13,240 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="textures">
+      <UniqueIdentifier>{e1769358-6e40-4de0-9b16-6ca131e3556c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools">
+      <UniqueIdentifier>{f8d7cb23-4a14-4164-9e04-babb62628b67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core">
+      <UniqueIdentifier>{834b974a-efc5-4be8-b435-9b97e605e0d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cameras">
+      <UniqueIdentifier>{904ff5af-96db-4db3-bf54-796b8a8b40b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="accelerators">
+      <UniqueIdentifier>{1c3fb873-acb3-480c-a77a-b587d84167ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scenes">
+      <UniqueIdentifier>{d4bff66f-1aed-458a-b954-08d1cf919dc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shapes">
+      <UniqueIdentifier>{54378cea-c35b-4670-b7f1-225b05fa3191}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="systems">
+      <UniqueIdentifier>{efdb19a7-a03b-45b5-acef-b94143266425}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="samplers">
+      <UniqueIdentifier>{32c1f3ab-d153-42e0-94b0-92c79111ac10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="materials">
+      <UniqueIdentifier>{b05747b2-30cd-4394-aa82-b98a4b06170a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ray.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="Scenes\Scene.h">
+      <Filter>scenes</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="textures\Texture.h">
+      <Filter>textures</Filter>
     </ClInclude>
-    <ClInclude Include="Vector3D.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="tools\stb_image.h">
+      <Filter>tools</Filter>
     </ClInclude>
-    <ClInclude Include="Utility.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="tools\stb_image_write.h">
+      <Filter>tools</Filter>
     </ClInclude>
-    <ClInclude Include="stb_image_write.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="tools\Utility.h">
+      <Filter>tools</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="shapes\Box.h">
+      <Filter>shapes</Filter>
     </ClInclude>
-    <ClInclude Include="Vector4D.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="shapes\Constant_medium.h">
+      <Filter>shapes</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="shapes\Flip_face.h">
+      <Filter>shapes</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="shapes\MovingSphere.h">
+      <Filter>shapes</Filter>
     </ClInclude>
-    <ClInclude Include="Sphere.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="shapes\Object.h">
+      <Filter>shapes</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="shapes\Ray.h">
+      <Filter>shapes</Filter>
     </ClInclude>
-    <ClInclude Include="Material.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="shapes\Rotate_y.h">
+      <Filter>shapes</Filter>
     </ClInclude>
-    <ClInclude Include="Lambertian.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="shapes\Sphere.h">
+      <Filter>shapes</Filter>
     </ClInclude>
-    <ClInclude Include="Metal.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="shapes\Translate.h">
+      <Filter>shapes</Filter>
     </ClInclude>
-    <ClInclude Include="Dielectric.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="shapes\XY_Rect.h">
+      <Filter>shapes</Filter>
     </ClInclude>
-    <ClInclude Include="MovingSphere.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="shapes\XZ_Rect.h">
+      <Filter>shapes</Filter>
     </ClInclude>
-    <ClInclude Include="AABB.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="shapes\YZ_Rect.h">
+      <Filter>shapes</Filter>
     </ClInclude>
-    <ClInclude Include="BVHNode.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="systems\Rendering.h">
+      <Filter>systems</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="samplers\Cosine_pdf.h">
+      <Filter>samplers</Filter>
     </ClInclude>
-    <ClInclude Include="Perlin.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="samplers\Mixture_PDF.h">
+      <Filter>samplers</Filter>
     </ClInclude>
-    <ClInclude Include="stb_image.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="samplers\PDF.h">
+      <Filter>samplers</Filter>
     </ClInclude>
-    <ClInclude Include="Diffuse_light.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="materials\Dielectric.h">
+      <Filter>materials</Filter>
     </ClInclude>
-    <ClInclude Include="XY_Rect.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="materials\Diffuse_light.h">
+      <Filter>materials</Filter>
     </ClInclude>
-    <ClInclude Include="XZ_Rect.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="materials\Isotropic.h">
+      <Filter>materials</Filter>
     </ClInclude>
-    <ClInclude Include="YZ_Rect.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="materials\Lambertian.h">
+      <Filter>materials</Filter>
     </ClInclude>
-    <ClInclude Include="Box.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="materials\Material.h">
+      <Filter>materials</Filter>
     </ClInclude>
-    <ClInclude Include="Translate.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="materials\Metal.h">
+      <Filter>materials</Filter>
     </ClInclude>
-    <ClInclude Include="Rotate_y.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="materials\Object_PDF.h">
+      <Filter>materials</Filter>
     </ClInclude>
-    <ClInclude Include="Constant_medium.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="accelerators\AABB.h">
+      <Filter>accelerators</Filter>
     </ClInclude>
-    <ClInclude Include="Isotropic.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="accelerators\BVHNode.h">
+      <Filter>accelerators</Filter>
     </ClInclude>
-    <ClInclude Include="ONB.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="cameras\Camera.h">
+      <Filter>cameras</Filter>
     </ClInclude>
-    <ClInclude Include="Flip_face.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="core\ONB.h">
+      <Filter>core</Filter>
     </ClInclude>
-    <ClInclude Include="PDF.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="core\Perlin.h">
+      <Filter>core</Filter>
     </ClInclude>
-    <ClInclude Include="Cosine_pdf.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Object_PDF.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Mixture_PDF.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="core\reflection.h">
+      <Filter>core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ray.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector3D.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Vector4D.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="Scenes\Scene.cpp">
+      <Filter>scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="textures\Texture.cpp">
+      <Filter>textures</Filter>
     </ClCompile>
-    <ClCompile Include="Utility.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="tools\Utility.cpp">
+      <Filter>tools</Filter>
     </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="shapes\Box.cpp">
+      <Filter>shapes</Filter>
     </ClCompile>
-    <ClCompile Include="Sphere.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="shapes\Constant_medium.cpp">
+      <Filter>shapes</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="shapes\Flip_face.cpp">
+      <Filter>shapes</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="shapes\MovingSphere.cpp">
+      <Filter>shapes</Filter>
     </ClCompile>
-    <ClCompile Include="Material.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="shapes\Object.cpp">
+      <Filter>shapes</Filter>
     </ClCompile>
-    <ClCompile Include="Lambertian.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="shapes\Ray.cpp">
+      <Filter>shapes</Filter>
     </ClCompile>
-    <ClCompile Include="Metal.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="shapes\Rotate_y.cpp">
+      <Filter>shapes</Filter>
     </ClCompile>
-    <ClCompile Include="Dielectric.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="shapes\Sphere.cpp">
+      <Filter>shapes</Filter>
     </ClCompile>
-    <ClCompile Include="MovingSphere.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="shapes\Translate.cpp">
+      <Filter>shapes</Filter>
     </ClCompile>
-    <ClCompile Include="AABB.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="shapes\XY_Rect.cpp">
+      <Filter>shapes</Filter>
     </ClCompile>
-    <ClCompile Include="BVHNode.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="shapes\XZ_Rect.cpp">
+      <Filter>shapes</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="shapes\YZ_Rect.cpp">
+      <Filter>shapes</Filter>
     </ClCompile>
-    <ClCompile Include="Perlin.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="systems\Rendering.cpp">
+      <Filter>systems</Filter>
     </ClCompile>
-    <ClCompile Include="Diffuse_light.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="samplers\Cosine_pdf.cpp">
+      <Filter>samplers</Filter>
     </ClCompile>
-    <ClCompile Include="XY_Rect.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="samplers\Mixture_PDF.cpp">
+      <Filter>samplers</Filter>
     </ClCompile>
-    <ClCompile Include="XZ_Rect.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="samplers\PDF.cpp">
+      <Filter>samplers</Filter>
     </ClCompile>
-    <ClCompile Include="YZ_Rect.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="materials\Dielectric.cpp">
+      <Filter>materials</Filter>
     </ClCompile>
-    <ClCompile Include="Box.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="materials\Diffuse_light.cpp">
+      <Filter>materials</Filter>
     </ClCompile>
-    <ClCompile Include="Translate.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="materials\Isotropic.cpp">
+      <Filter>materials</Filter>
     </ClCompile>
-    <ClCompile Include="Rotate_y.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="materials\Lambertian.cpp">
+      <Filter>materials</Filter>
     </ClCompile>
-    <ClCompile Include="Constant_medium.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="materials\Material.cpp">
+      <Filter>materials</Filter>
     </ClCompile>
-    <ClCompile Include="Isotropic.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="materials\Metal.cpp">
+      <Filter>materials</Filter>
     </ClCompile>
-    <ClCompile Include="ONB.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="materials\Object_PDF.cpp">
+      <Filter>materials</Filter>
     </ClCompile>
-    <ClCompile Include="Flip_face.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="accelerators\AABB.cpp">
+      <Filter>accelerators</Filter>
     </ClCompile>
-    <ClCompile Include="PDF.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="accelerators\BVHNode.cpp">
+      <Filter>accelerators</Filter>
     </ClCompile>
-    <ClCompile Include="Cosine_pdf.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="cameras\Camera.cpp">
+      <Filter>cameras</Filter>
     </ClCompile>
-    <ClCompile Include="Object_PDF.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="core\ONB.cpp">
+      <Filter>core</Filter>
     </ClCompile>
-    <ClCompile Include="Mixture_PDF.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="core\Perlin.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\reflection.cpp">
+      <Filter>core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
