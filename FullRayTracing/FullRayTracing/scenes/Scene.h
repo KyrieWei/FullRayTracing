@@ -1,6 +1,5 @@
 #pragma once
 #include "../shapes/Object.h"
-#include "../shapes/Sphere.h"
 #include "../materials/Lambertian.h"
 
 #include <memory>

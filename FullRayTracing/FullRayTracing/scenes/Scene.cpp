@@ -1,4 +1,7 @@
 #include "Scene.h"
+#include "../shapes/Sphere.h"
+#include "../shapes/Box.h"
+#include "../shapes/XZ_Rect.h"
 
 bool Scene::hit(const Ray& r, hit_record& rec, float t_min, float t_max) const
 {
@@ -40,8 +43,14 @@ void Scene::initializeScene()
 {
 	
 	std::shared_ptr<Lambertian> sphere_mat(make_shared<Lambertian>(Vector3D(0.5, 0.3, 0.9)));
-	Sphere first_sphere(Vector3D(0, 0, -2), 1.0, sphere_mat);
+	Sphere first_sphere(Vector3D(0, 0, 0), 5.0, sphere_mat);
 
-	this->add(make_shared<Sphere>(first_sphere));
+	std::shared_ptr<Lambertian> green_mat(make_shared<Lambertian>(Vector3D(0.0, 1.0, 0.0)));
+	Box green_box(Vector3D(-20, -20, 5), Vector3D(-10, -10, -5), green_mat);
+
+	//this->add(make_shared<Sphere>(first_sphere));
+	//this->add(make_shared<Box>(green_box));
+
+	this->add(make_shared<XZ_Rect>(-20, -10, 5, -5, -10, green_mat));
 }
 

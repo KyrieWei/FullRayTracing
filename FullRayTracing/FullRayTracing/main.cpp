@@ -22,7 +22,7 @@ int main()
 
 	//--------------------------------------------------------------------
 	//camera setting
-	Vector3D camera_pos(0, 0, 3);
+	Vector3D camera_pos(0, 20, 40);
 	Vector3D camera_lookat(0, 0, 0);
 	Vector3D camera_up(0, 1, 0);
 	float vfov = 60;

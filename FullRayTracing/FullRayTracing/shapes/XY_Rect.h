@@ -19,6 +19,7 @@ public:
 
 public:
 	shared_ptr<Material> mp;
+	//k为另一维度的值
 	float x0, x1, y0, y1, k;
 };
 

@@ -25,6 +25,7 @@ struct hit_record
 
 	inline void set_face_normal(const Ray& r, const Vector3D& outward_normal)
 	{
+		//当夹角大于90度，即dot < 0时，光线从外部照向当前片元
 		front_face = dot(r.direction, outward_normal) < 0;
 		normal = front_face ? outward_normal : -outward_normal;
 	}

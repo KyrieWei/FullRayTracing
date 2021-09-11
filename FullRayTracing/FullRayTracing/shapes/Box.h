@@ -20,6 +20,7 @@ public:
 public:
 	Vector3D box_min;
 	Vector3D box_max;
+	//存储盒子的6个面，用Scene的objects数组存储，并调用hit方法
 	Scene sides;
 };
 
