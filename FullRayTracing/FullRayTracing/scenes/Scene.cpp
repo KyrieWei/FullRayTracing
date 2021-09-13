@@ -2,6 +2,10 @@
 #include "../shapes/Sphere.h"
 #include "../shapes/Box.h"
 #include "../shapes/XZ_Rect.h"
+#include "../shapes/YZ_Rect.h"
+#include "../shapes/XY_Rect.h"
+#include "../shapes/Rotate_y.h"
+#include "../shapes/Translate.h"
 
 bool Scene::hit(const Ray& r, hit_record& rec, float t_min, float t_max) const
 {
@@ -42,15 +46,27 @@ bool Scene::bounding_box(float time0, float time1, AABB& output_box) const
 void Scene::initializeScene()
 {
 	
-	std::shared_ptr<Lambertian> sphere_mat(make_shared<Lambertian>(Vector3D(0.5, 0.3, 0.9)));
-	Sphere first_sphere(Vector3D(0, 0, 0), 5.0, sphere_mat);
+	std::shared_ptr<Lambertian> sphere_mat(make_shared<Lambertian>(Vector3D(1.0, 0.0, 0.0)));
+	
+	std::shared_ptr<Lambertian> red_mat(make_shared<Lambertian>(Vector3D(0.65, 0.05, 0.05)));
+	std::shared_ptr<Lambertian> green_mat(make_shared<Lambertian>(Vector3D(0.12, 0.45, 0.15)));
+	std::shared_ptr<Lambertian> white_mat(make_shared<Lambertian>(Vector3D(0.73, 0.73, 0.73)));
+	std::shared_ptr<Lambertian> box_mat(make_shared<Lambertian>(Vector3D(0.9, 0.3, 0.6)));
 
-	std::shared_ptr<Lambertian> green_mat(make_shared<Lambertian>(Vector3D(0.0, 1.0, 0.0)));
-	Box green_box(Vector3D(-20, -20, 5), Vector3D(-10, -10, -5), green_mat);
+	std::shared_ptr<Object> box = make_shared<Box>(Vector3D(0.0, 0.0, 0.0), Vector3D(165, 330, 165), box_mat);
+	box = make_shared<Rotate_y>(box, 30);
+	box = make_shared<Translate>(box, Vector3D(265, 0, 295));
 
-	//this->add(make_shared<Sphere>(first_sphere));
-	//this->add(make_shared<Box>(green_box));
+	std::shared_ptr<Object> first_sphere = make_shared<Sphere>(Vector3D(190, 90, 190), 90.0, sphere_mat);
+	
+	this->add(box);
+	this->add(first_sphere);
 
-	this->add(make_shared<XZ_Rect>(-20, -10, 5, -5, -10, green_mat));
+	this->add(make_shared<YZ_Rect>(0, 555, 0, 555, 555, green_mat));
+	this->add(make_shared<YZ_Rect>(0, 555, 0, 555, 0, red_mat));
+	this->add(make_shared<XZ_Rect>(0, 555, 0, 555, 555, white_mat));
+	this->add(make_shared<XZ_Rect>(0, 555, 0, 555, 0, white_mat));
+	this->add(make_shared<XY_Rect>(0, 555, 0, 555, 555, white_mat));
+
 }
 

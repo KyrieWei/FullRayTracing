@@ -76,6 +76,6 @@ Vector3D Rendering::rayColor(const Ray& r, const Vector3D& background, const Sce
 	if (!rec.mat_ptr->scatter(r, rec, color, tmp))
 		return color; 
 
-	return color + rayColor(tmp, background, scene, lights, depth - 1);
+	return color; // +rayColor(tmp, background, scene, lights, depth - 1);
 }
 
