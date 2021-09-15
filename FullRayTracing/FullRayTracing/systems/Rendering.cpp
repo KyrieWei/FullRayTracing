@@ -71,11 +71,13 @@ Vector3D Rendering::rayColor(const Ray& r, const Vector3D& background, const Sce
 	if (!scene.hit(r, rec, 0.001, INFINITY))
 		return background;
 	
-	Vector3D color(0.0, 0.0, 0.0);
+	Vector3D attenuation;
+	Vector3D emitted = rec.mat_ptr->emitted(r, rec, rec.u, rec.v, rec.pos);
 	Ray tmp;
-	if (!rec.mat_ptr->scatter(r, rec, color, tmp))
-		return color; 
 
-	return color; // +rayColor(tmp, background, scene, lights, depth - 1);
+	if (!rec.mat_ptr->scatter(r, rec, attenuation, tmp))
+		return emitted; 
+
+	return emitted + attenuation * rayColor(tmp, background, scene, lights, depth - 1);
 }
 

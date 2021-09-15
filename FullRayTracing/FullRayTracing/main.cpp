@@ -10,7 +10,7 @@
 
 int main()
 {
-	const char* filename = "../pbrt/one.jpg";
+	const char* filename = "../pbrt/two.jpg";
 
 	int width = 600;
 	int height = 600;

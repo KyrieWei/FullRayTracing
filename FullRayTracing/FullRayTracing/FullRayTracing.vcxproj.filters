@@ -43,6 +43,9 @@
     <Filter Include="materials">
       <UniqueIdentifier>{b05747b2-30cd-4394-aa82-b98a4b06170a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="maths">
+      <UniqueIdentifier>{91cf82df-a139-45cc-b884-01a626387717}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scenes\Scene.h">
@@ -147,6 +150,15 @@
     <ClInclude Include="core\reflection.h">
       <Filter>core</Filter>
     </ClInclude>
+    <ClInclude Include="maths\Vector3D.h">
+      <Filter>maths</Filter>
+    </ClInclude>
+    <ClInclude Include="maths\Vector4D.h">
+      <Filter>maths</Filter>
+    </ClInclude>
+    <ClInclude Include="maths\Defines.h">
+      <Filter>maths</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -247,6 +259,12 @@
     </ClCompile>
     <ClCompile Include="core\reflection.cpp">
       <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="maths\Vector3D.cpp">
+      <Filter>maths</Filter>
+    </ClCompile>
+    <ClCompile Include="maths\Vector4D.cpp">
+      <Filter>maths</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

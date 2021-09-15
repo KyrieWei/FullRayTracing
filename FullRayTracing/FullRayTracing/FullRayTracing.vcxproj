@@ -136,6 +136,9 @@
     <ClInclude Include="materials\Material.h" />
     <ClInclude Include="materials\Metal.h" />
     <ClInclude Include="materials\Object_PDF.h" />
+    <ClInclude Include="maths\Defines.h" />
+    <ClInclude Include="maths\Vector3D.h" />
+    <ClInclude Include="maths\Vector4D.h" />
     <ClInclude Include="samplers\Cosine_pdf.h" />
     <ClInclude Include="samplers\Mixture_PDF.h" />
     <ClInclude Include="samplers\PDF.h" />
@@ -173,6 +176,8 @@
     <ClCompile Include="materials\Material.cpp" />
     <ClCompile Include="materials\Metal.cpp" />
     <ClCompile Include="materials\Object_PDF.cpp" />
+    <ClCompile Include="maths\Vector3D.cpp" />
+    <ClCompile Include="maths\Vector4D.cpp" />
     <ClCompile Include="samplers\Cosine_pdf.cpp" />
     <ClCompile Include="samplers\Mixture_PDF.cpp" />
     <ClCompile Include="samplers\PDF.cpp" />
