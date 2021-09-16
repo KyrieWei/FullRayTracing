@@ -6,6 +6,8 @@
 #include "../shapes/XY_Rect.h"
 #include "../shapes/Rotate_y.h"
 #include "../shapes/Translate.h"
+#include "../materials/Dielectric.h"
+#include "../materials/Metal.h"
 
 bool Scene::hit(const Ray& r, hit_record& rec, float t_min, float t_max) const
 {
@@ -46,7 +48,8 @@ bool Scene::bounding_box(float time0, float time1, AABB& output_box) const
 void Scene::initializeScene()
 {
 	
-	std::shared_ptr<Lambertian> sphere_mat(make_shared<Lambertian>(Vector3D(1.0, 0.0, 0.0)));
+	std::shared_ptr<Dielectric> sphere_dielectric_mat(make_shared<Dielectric>(1.5));
+	std::shared_ptr<Metal> sphere_metal_mat(make_shared<Metal>(Vector3D(0.8, 0.6, 0.2), 0.0));
 	
 	std::shared_ptr<Lambertian> red_mat(make_shared<Lambertian>(Vector3D(0.65, 0.05, 0.05)));
 	std::shared_ptr<Lambertian> green_mat(make_shared<Lambertian>(Vector3D(0.12, 0.45, 0.15)));
@@ -57,10 +60,12 @@ void Scene::initializeScene()
 	box = make_shared<Rotate_y>(box, 30);
 	box = make_shared<Translate>(box, Vector3D(265, 0, 295));
 
-	std::shared_ptr<Object> first_sphere = make_shared<Sphere>(Vector3D(190, 90, 190), 90.0, sphere_mat);
-	
+	std::shared_ptr<Object> first_sphere = make_shared<Sphere>(Vector3D(190, 90, 190), 90.0, sphere_dielectric_mat);
+	std::shared_ptr<Object> second_sphere = make_shared<Sphere>(Vector3D(300, 90, 100), 90.0, sphere_metal_mat);
+
 	this->add(box);
 	this->add(first_sphere);
+	this->add(second_sphere);
 
 	this->add(make_shared<YZ_Rect>(0, 555, 0, 555, 555, green_mat));
 	this->add(make_shared<YZ_Rect>(0, 555, 0, 555, 0, red_mat));
